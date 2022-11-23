@@ -20,7 +20,7 @@ class PostViewController: UIViewController {
         title = titleFromPost
         
         
-        let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(infoButtonTapped(_:)))
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(infoButtonTapped))
         
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
@@ -59,9 +59,6 @@ class PostViewController: UIViewController {
     @objc func infoButtonTapped(_ sender: UIBarButtonItem) {
         
         let infoVC = InfoViewController()
-        if let modalController = infoVC.sheetPresentationController {
-            modalController.detents = [.large()]
-        }
         present(infoVC, animated: true)
             
     }

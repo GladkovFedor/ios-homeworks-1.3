@@ -24,9 +24,7 @@ class FeedViewController: UIViewController {
         watchPostButton.addAction(UIAction(handler: { _ in
             
             let vc = PostViewController()
-            
             vc.titleFromPost = newPost.title
-            
             self.navigationController?.pushViewController(vc, animated: true)
             
         }), for: .touchUpInside)
