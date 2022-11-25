@@ -24,8 +24,6 @@ class ProfileViewController: UIViewController {
         
         self.view.addSubview(profileHeaderView)
         
-        var insetsLayoutMarginsFromSafeArea: Bool = true
-        
 //        NSLayoutConstraint.activate([
 //            profileHeaderView.heightAnchor.constraint(equalToConstant: 44.0)
 //        ])
