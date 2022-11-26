@@ -189,7 +189,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         
         statusTextField.clearButtonMode = .whileEditing
         statusText = textField.text
-        print(statusText)
         
     }
     
