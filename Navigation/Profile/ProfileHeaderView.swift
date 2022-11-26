@@ -135,7 +135,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             btn.layer.shadowColor = UIColor.black.cgColor
         
             btn.addTarget(self, action: #selector(setStatusButtonTapped), for: .touchUpInside)
-    
+        
         return btn
     }()
     
