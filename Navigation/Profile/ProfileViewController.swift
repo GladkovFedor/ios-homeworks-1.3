@@ -18,32 +18,47 @@ class ProfileViewController: UIViewController {
         
         view.backgroundColor = .lightGray
         
-        profileHeaderView = ProfileHeaderView(frame: view.frame)
+        profileHeaderView = ProfileHeaderView()
         
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        let safeLayout = self.view.safeAreaLayoutGuide
+        
         
         self.view.addSubview(profileHeaderView)
+        self.view.addSubview(changeTitleButton)
         
-//        NSLayoutConstraint.activate([
-//            profileHeaderView.heightAnchor.constraint(equalToConstant: 44.0)
-//        ])
+        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        changeTitleButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            profileHeaderView.leadingAnchor.constraint(equalTo: safeLayout.leadingAnchor, constant: 0),
+            profileHeaderView.trailingAnchor.constraint(equalTo: safeLayout.trailingAnchor, constant: 0),
+            profileHeaderView.topAnchor.constraint(equalTo: safeLayout.topAnchor, constant: 0),
+            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
+            
+            changeTitleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            changeTitleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            changeTitleButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            changeTitleButton.heightAnchor.constraint(equalToConstant: 50)
+            
+        ])
         
     }
+
+    let changeTitleButton: UIButton = {
+
+        let btn = UIButton()
+            btn.backgroundColor = .systemBlue
+            btn.addTarget(self, action: #selector(changeTitleButtonPressed), for: .touchUpInside)
+            btn.backgroundColor = .systemBlue
+            btn.setTitle("Change title", for: .normal)
+
+        return btn
+        
+    }()
     
-    override func viewWillLayoutSubviews() {
-        profileHeaderView.frame = view.frame
+    @objc func changeTitleButtonPressed(_ sender: UIButton) {
+        print("Hi")
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

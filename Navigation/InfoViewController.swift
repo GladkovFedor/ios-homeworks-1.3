@@ -24,6 +24,7 @@ class InfoViewController: UIViewController {
         
         
         func alertButtonTapped() {
+            
             let alertController = UIAlertController(title: "Title of alert message!", message: "Alert message itself!", preferredStyle: .alert)
             
             let firstAlertAction = UIAlertAction(title: "Do Nothing", style: .default)
@@ -50,28 +51,7 @@ class InfoViewController: UIViewController {
             alertButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             alertButton.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-        
-        
-//        func showModal() {
-//            let modalDatePicker : UIViewController = InfoViewController()
-//            modalDatePicker.modalPresentationStyle = .overCurrentContext
-//            modalDatePicker.modalTransitionStyle = .crossDissolve
-//            self.present(modalDatePicker, animated: true, completion: nil)
-//        }
-//       
-        
-        // Do any additional setup after loading the view.
-    }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
 
 }
