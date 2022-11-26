@@ -10,83 +10,31 @@ import UIKit
 
 class ProfileHeaderView: UIView, UITextFieldDelegate {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        self.addSubview(avatarImageView)
-        self.addSubview(fullNameLabel)
-        self.addSubview(statusLabel)
-        self.addSubview(rectForTextField)
-            rectForTextField.addSubview(statusTextField)
-            rectForTextField.clipsToBounds = true
-        self.addSubview(setStatusButton)
-        
-        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        fullNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
-        rectForTextField.translatesAutoresizingMaskIntoConstraints = false
-        statusTextField.translatesAutoresizingMaskIntoConstraints = false
-        setStatusButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        
-        NSLayoutConstraint.activate([
-            
-            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 130),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 130),
-        
-            fullNameLabel.heightAnchor.constraint(equalToConstant: 20),
-            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            
-            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 60),
-            
-            rectForTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 16),
-            rectForTextField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor, constant: 0),
-            rectForTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            rectForTextField.heightAnchor.constraint(equalToConstant: 50),
-            
-            statusTextField.topAnchor.constraint(equalTo: rectForTextField.topAnchor, constant: 0),
-            statusTextField.leadingAnchor.constraint(equalTo: rectForTextField.leadingAnchor, constant: 5),
-            statusTextField.trailingAnchor.constraint(equalTo: rectForTextField.trailingAnchor, constant: -5),
-            statusTextField.heightAnchor.constraint(equalTo: rectForTextField.heightAnchor, constant: 0),
-            
-            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
-            setStatusButton.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor),
-            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50)
-            
-        ])
-        
-    }
-    
     private var statusText: String!
-    
     
 //     MARK: - Фото профиля
     
     let avatarImageView: UIView = {
         
-        let photoWidth = 130
-        let photoHeight = 130
-        
         let profilePhoto = UIView()
-        
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: photoWidth, height: photoHeight))
-            image.image = UIImage(named: "hipster cat")
-        
-        profilePhoto.addSubview(image)
-        
-            profilePhoto.layer.cornerRadius = CGFloat(photoWidth) / 2
+            profilePhoto.layer.cornerRadius = 130 / 2
             profilePhoto.layer.borderWidth = 3
             profilePhoto.layer.borderColor = UIColor.white.cgColor
         
-        profilePhoto.clipsToBounds = true
+            profilePhoto.translatesAutoresizingMaskIntoConstraints = false
         
         return profilePhoto
+    }()
+    
+    let image: UIImageView = {
+        
+        let image = UIImageView()
+            image.image = UIImage(named: "hipster cat")
+        
+            image.translatesAutoresizingMaskIntoConstraints = false
+        
+        return image
+        
     }()
     
 //     MARK: - Имя профиля
@@ -99,6 +47,8 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             profileName.font = UIFont.boldSystemFont(ofSize: 18)
             profileName.textColor = .black
             profileName.sizeToFit()
+        
+            profileName.translatesAutoresizingMaskIntoConstraints = false
         
         return profileName
     }()
@@ -113,7 +63,9 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             status.font = UIFont.systemFont(ofSize: 14)
             status.textAlignment = .left
             status.text = "Waiting for something..."
+        
             status.sizeToFit()
+            status.translatesAutoresizingMaskIntoConstraints = false
 
         return status
     }()
@@ -136,6 +88,8 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         
             btn.addTarget(self, action: #selector(setStatusButtonTapped), for: .touchUpInside)
         
+            btn.translatesAutoresizingMaskIntoConstraints = false
+        
         return btn
     }()
     
@@ -149,6 +103,8 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             rect.layer.cornerRadius = 12
             rect.layer.borderWidth = 1
             rect.layer.borderColor = UIColor.black.cgColor
+        
+            rect.translatesAutoresizingMaskIntoConstraints = false
         
         return rect
     }()
@@ -166,15 +122,76 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         
             statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         
+            statusTextField.translatesAutoresizingMaskIntoConstraints = false
+        
         return statusTextField
     }()
     
-//      MARK: - Functions
+//      MARK: - Initializers
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        self.addAllSubviews()
+        
+        NSLayoutConstraint.activate([
+            
+            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 130),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 130),
+            
+            image.topAnchor.constraint(equalTo: avatarImageView.topAnchor),
+            image.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor),
+            image.heightAnchor.constraint(equalTo: avatarImageView.heightAnchor),
+            image.widthAnchor.constraint(equalTo: avatarImageView.widthAnchor),
+            
+            fullNameLabel.heightAnchor.constraint(equalToConstant: 20),
+            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
+            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            
+            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 60),
+            
+            rectForTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 16),
+            rectForTextField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor, constant: 0),
+            rectForTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            rectForTextField.heightAnchor.constraint(equalToConstant: 50),
+            
+            statusTextField.topAnchor.constraint(equalTo: rectForTextField.topAnchor, constant: 0),
+            statusTextField.leadingAnchor.constraint(equalTo: rectForTextField.leadingAnchor, constant: 5),
+            statusTextField.trailingAnchor.constraint(equalTo: rectForTextField.trailingAnchor, constant: -5),
+            statusTextField.heightAnchor.constraint(equalTo: rectForTextField.heightAnchor, constant: 0),
+            
+            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
+            setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            setStatusButton.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor),
+            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50)
+            
+        ])
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+//      MARK: - Functions
+    
+    func addAllSubviews() {
+        
+        self.addSubview(avatarImageView)
+            avatarImageView.addSubview(image)
+            avatarImageView.clipsToBounds = true
+        self.addSubview(fullNameLabel)
+        self.addSubview(statusLabel)
+        self.addSubview(rectForTextField)
+            rectForTextField.addSubview(statusTextField)
+            rectForTextField.clipsToBounds = true
+        self.addSubview(setStatusButton)
+        
+    }
+
     @objc func setStatusButtonTapped(_ sender: UIButton) {
         
         statusLabel.text = statusText
