@@ -9,7 +9,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
 
-    let newPost = Post(title: "The newest post")
+    let newPost = Post(author: "", description: "", image: "", likes: 0, views: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +31,6 @@ class FeedViewController: UIViewController {
             stackViewButtons.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackViewButtons.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stackViewButtons.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-//            stackViewButtons.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-//            stackViewButtons.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 16)
 
         ])
         
@@ -81,7 +79,7 @@ class FeedViewController: UIViewController {
     @objc func btnTapped(_ handler: UIButton) {
         
         let vc = PostViewController()
-        vc.titleFromPost = newPost.title
+//        vc.titleFromPost = newPost.title
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

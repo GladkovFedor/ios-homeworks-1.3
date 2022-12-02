@@ -28,8 +28,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     
     let image: UIImageView = {
         
-        let image = UIImageView()
-            image.image = UIImage(named: "hipster cat")
+        let image = UIImageView(image: UIImage(named: "hipster cat"))
         
             image.translatesAutoresizingMaskIntoConstraints = false
         
@@ -131,6 +130,8 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.backgroundColor = .systemGray6
 
         self.addAllSubviews()
         
@@ -181,13 +182,13 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     func addAllSubviews() {
         
         self.addSubview(avatarImageView)
-            avatarImageView.addSubview(image)
-            avatarImageView.clipsToBounds = true
+        avatarImageView.addSubview(image)
+        avatarImageView.clipsToBounds = true
         self.addSubview(fullNameLabel)
         self.addSubview(statusLabel)
         self.addSubview(rectForTextField)
-            rectForTextField.addSubview(statusTextField)
-            rectForTextField.clipsToBounds = true
+        rectForTextField.addSubview(statusTextField)
+        rectForTextField.clipsToBounds = true
         self.addSubview(setStatusButton)
         
     }
