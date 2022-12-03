@@ -7,70 +7,85 @@
 
 import UIKit
 
+    private let cellID = "celID"
+
 class ProfileViewController: UIViewController {
-
-    var profileHeaderView: ProfileHeaderView = {
+    
+    let dataStore = DataStore()
+    
+    let tableView: UITableView = {
         
-        let vc = ProfileHeaderView()
-            vc.translatesAutoresizingMaskIntoConstraints = false
+        let tv = UITableView()
+        tv.translatesAutoresizingMaskIntoConstraints = false
         
-        return vc
+        return tv
         
     }()
     
-    let changeTitleButton: UIButton = {
-
-        let btn = UIButton()
-            btn.backgroundColor = .systemBlue
-            btn.addTarget(self, action: #selector(changeTitleButtonPressed), for: .touchUpInside)
-            btn.backgroundColor = .systemBlue
-            btn.setTitle("Change title", for: .normal)
-        
-            btn.translatesAutoresizingMaskIntoConstraints = false
-
-        return btn
-        
-    }()
-    
-    //      MARK: - Functions
+    //  MARK: - Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
+            
+        navigationController?.navigationBar.isHidden = false
         
-        let safeLayout = self.view.safeAreaLayoutGuide
+        view.backgroundColor = .systemBackground
         
-        view.backgroundColor = .lightGray
-        
-        self.addAllSubviews()
-        
-        
-        
+        let safeLayout = view.safeAreaLayoutGuide
+            
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "cellID")
+            
+        addAllSubviews()
+            
         NSLayoutConstraint.activate([
             
-            profileHeaderView.leadingAnchor.constraint(equalTo: safeLayout.leadingAnchor, constant: 0),
-            profileHeaderView.trailingAnchor.constraint(equalTo: safeLayout.trailingAnchor, constant: 0),
-            profileHeaderView.topAnchor.constraint(equalTo: safeLayout.topAnchor, constant: 0),
-            
-            changeTitleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            changeTitleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            changeTitleButton.bottomAnchor.constraint(equalTo: safeLayout.bottomAnchor, constant: 0),
-            changeTitleButton.heightAnchor.constraint(equalToConstant: 50)
-            
+//            view.topAnchor.constraint(equalTo: safeLayout.topAnchor),
+//            view.leadingAnchor.constraint(equalTo: safeLayout.leadingAnchor),
+//            view.trailingAnchor.constraint(equalTo: safeLayout.trailingAnchor),
+//            view.bottomAnchor.constraint(equalTo: safeLayout.bottomAnchor),
+                
+            tableView.topAnchor.constraint(equalTo: safeLayout.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: safeLayout.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: safeLayout.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: safeLayout.bottomAnchor),
+                
         ])
     }
     
     func addAllSubviews() {
         
-        profileHeaderView = ProfileHeaderView()
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.view.addSubview(profileHeaderView)
-        self.view.addSubview(changeTitleButton)
+        view.addSubview(tableView)
         
     }
+
+}
+
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
-    @objc func changeTitleButtonPressed(_ sender: UIButton) {
-        print("Hi")
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataStore.posts.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID") as! PostTableViewCell
+        cell.postTitle.text = dataStore.posts[indexPath.item].author
+        cell.postText.text = dataStore.posts[indexPath.item].description
+        cell.likes.text = "Likes: \(String(dataStore.posts[indexPath.item].likes))"
+        cell.views.text = "Views: \(String(dataStore.posts[indexPath.item].views))"
+        cell.postImage.image = UIImage(named: dataStore.posts[indexPath.item].image)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        let profileHeader = ProfileHeaderView()
+        return profileHeader
+        
     }
     
 }

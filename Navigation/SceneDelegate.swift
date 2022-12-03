@@ -22,10 +22,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         profileController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
         return profileController
     }
+    
+    func createLogInController() -> UINavigationController {
+        let logInController = UINavigationController(rootViewController: LogInViewController())
+        logInController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 2)
+        return logInController
+    }
 
     func createTabBar() -> UITabBarController {
         let tabBar = UITabBarController()
-        tabBar.viewControllers = [createFeedController(), createProfileController()]
+        tabBar.viewControllers = [createFeedController(), createLogInController()]
         return tabBar
     }
 
