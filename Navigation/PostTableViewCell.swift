@@ -77,8 +77,8 @@ class PostTableViewCell: UITableViewCell {
         let sv = UIStackView()
         
             sv.axis = .horizontal
-        sv.distribution = .fillEqually
-        sv.alignment = .center
+            sv.distribution = .fillEqually
+            sv.alignment = .center
             
             sv.translatesAutoresizingMaskIntoConstraints = false
         

@@ -17,9 +17,17 @@ struct Post {
     
 }
 
+struct Photo {
+    
+    let name: String
+    
+}
+
 class DataStore {
     
     var posts = [Post]()
+    
+    var photoGallery = [Photo]()
     
     init() {
         
@@ -30,6 +38,34 @@ class DataStore {
             Post(author: "Чемпионат", description: "Футболисты сборной Японии со счетом 2:1 обыграли команду Испании в матче третьего тура группового этапа чемпионата мира в Катаре. По ходу группового этапа сборная Японии обыграла команду Германии (2:1) и уступила костариканцам (0:1). Игры с немцами и испанцами развивалась для японцев по аналогичному сценарию.", image: "Японский футболист", likes: 18, views: 78),
             Post(author: "Lenta.ru", description: "Современная технология, которая находится в стадии разработки, поможет пациентам с ограниченными возможностями снова легко двигаться и общаться.  «Долгосрочная цель Neuralink - создание системы для преобразования импульсов всего мозга в действия», - заявил Маск. «Чисто гипотетически я мог бы имплантировать устройство Neuralink вам прямо сейчас, и вы бы даже не узнали», — пошутил Маск.", image: "Mask", likes: 39, views: 192)
             
+        ]
+        
+        photoGallery = [
+        
+            Photo(name: "IMG_0659"),
+            Photo(name: "IMG_3440"),
+            Photo(name: "IMG_4066"),
+            Photo(name: "IMG_4542-2"),
+            Photo(name: "IMG_9642"),
+            
+            Photo(name: "IMG_2118"),
+            Photo(name: "IMG_4872"),
+            Photo(name: "IMG_6198"),
+            Photo(name: "IMG_8607"),
+            Photo(name: "IMG_9284"),
+            
+            Photo(name: "IMG_9457"),
+            Photo(name: ""),
+            Photo(name: ""),
+            Photo(name: ""),
+            Photo(name: ""),
+            
+            Photo(name: ""),
+            Photo(name: ""),
+            Photo(name: ""),
+            Photo(name: ""),
+            Photo(name: ""),
+        
         ]
     }
     

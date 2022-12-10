@@ -44,12 +44,12 @@ class InfoViewController: UIViewController {
             alertButtonTapped()
         }), for: .touchUpInside)
         
-        
-        
         NSLayoutConstraint.activate([
+            
             alertButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             alertButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             alertButton.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            
         ])
 
     }

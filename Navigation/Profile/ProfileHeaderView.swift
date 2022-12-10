@@ -52,7 +52,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         return profileName
     }()
     
-//     MARK: -    Статус
+//     MARK: - Статус
     
     var statusLabel: UILabel = {
         
