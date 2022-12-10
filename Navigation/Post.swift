@@ -55,16 +55,16 @@ class DataStore {
             Photo(name: "IMG_9284"),
             
             Photo(name: "IMG_9457"),
-            Photo(name: ""),
-            Photo(name: ""),
-            Photo(name: ""),
-            Photo(name: ""),
+            Photo(name: "IMG_2100"),
+            Photo(name: "IMG_6830"),
+            Photo(name: "IMG_9322"),
+            Photo(name: "IMG_1645"),
             
-            Photo(name: ""),
-            Photo(name: ""),
-            Photo(name: ""),
-            Photo(name: ""),
-            Photo(name: ""),
+            Photo(name: "IMG_0693"),
+            Photo(name: "IMG_5083"),
+            Photo(name: "IMG_3625 (ретушь)"),
+            Photo(name: "IMG_6791"),
+            Photo(name: "IMG_9251"),
         
         ]
     }

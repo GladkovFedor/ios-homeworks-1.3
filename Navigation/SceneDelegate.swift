@@ -29,14 +29,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return logInController
     }
     
-    func createPhotosController() -> UINavigationController {
-        let photosController = UINavigationController(rootViewController: PhotosViewController())
-        photosController.tabBarItem = UITabBarItem(title: "Photos", image: UIImage(systemName: "person.fill"), tag: 3)
-        return photosController
-    }
-    
-    
-
     func createTabBar() -> UITabBarController {
         let tabBar = UITabBarController()
         tabBar.viewControllers = [createFeedController(), createLogInController()]
