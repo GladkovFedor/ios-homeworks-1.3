@@ -60,7 +60,6 @@ class PostTableViewCell: UITableViewCell {
         
         let text = UILabel()
         
-            text.text = "test test test test test test test test test test test test test test test test test test test test test"
             text.textColor = .systemGray
             text.font = UIFont.systemFont(ofSize: 14)
             text.numberOfLines = 0
@@ -109,7 +108,7 @@ class PostTableViewCell: UITableViewCell {
         
             views.textColor = .black
             views.font = UIFont.systemFont(ofSize: 16)
-        views.textAlignment = .right
+            views.textAlignment = .right
                     
             views.translatesAutoresizingMaskIntoConstraints = false
             

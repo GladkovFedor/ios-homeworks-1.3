@@ -15,7 +15,6 @@ class PhotosViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Photo Gallery"
-        
         view.backgroundColor = .white
         
         let safeLayout = self.view.safeAreaLayoutGuide
@@ -24,8 +23,6 @@ class PhotosViewController: UIViewController {
         
         self.view.addSubview(collectionView)
         
-        
-
         NSLayoutConstraint.activate([
         
             collectionView.topAnchor.constraint(equalTo: safeLayout.topAnchor, constant: 8),

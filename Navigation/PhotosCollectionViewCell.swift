@@ -38,7 +38,6 @@ class PhotosCollectionViewCell: UICollectionViewCell {
             photo.trailingAnchor.constraint(equalTo: trailingAnchor)
             
         ])
-        
     }
     
     required init?(coder: NSCoder) {

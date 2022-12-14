@@ -17,8 +17,6 @@ class PhotosCollectionView: UICollectionView {
         
         super.init(frame: .zero, collectionViewLayout: layout)
         
-        
-        
         dataSource = self
         delegate = self
         
@@ -62,6 +60,5 @@ extension PhotosCollectionView: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         8
     }
-    
-    
+
 }

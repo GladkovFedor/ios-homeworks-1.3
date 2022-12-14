@@ -45,64 +45,32 @@ class PhotosTableViewCell: UITableViewCell {
             sv.translatesAutoresizingMaskIntoConstraints = false
         
         return sv
+        
     }()
     
     let photo1: UIImageView = {
         
-        let image = UIImageView()
-        
-            image.backgroundColor = .red
-            image.layer.cornerRadius = 6
-            image.contentMode = .scaleAspectFill
-            image.clipsToBounds = true
-            image.translatesAutoresizingMaskIntoConstraints = false
-        
-        return image
+        setUpImageView()
         
     }()
     
     let photo2: UIImageView = {
         
-        let image = UIImageView()
-        
-        image.backgroundColor = .red
-        image.layer.cornerRadius = 6
-        image.contentMode = .scaleAspectFill
-        image.clipsToBounds = true
-        image.translatesAutoresizingMaskIntoConstraints = false
-        
-        return image
+        setUpImageView()
         
     }()
     
     let photo3: UIImageView = {
         
-        let image = UIImageView()
-        
-        image.backgroundColor = .red
-        image.layer.cornerRadius = 6
-        image.contentMode = .scaleAspectFill
-        image.clipsToBounds = true
-        image.translatesAutoresizingMaskIntoConstraints = false
-        
-        return image
+        setUpImageView()
         
     }()
     
     let photo4: UIImageView = {
         
-        let image = UIImageView()
-        
-        image.backgroundColor = .red
-        image.layer.cornerRadius = 6
-        image.contentMode = .scaleAspectFill
-        image.clipsToBounds = true
-        image.translatesAutoresizingMaskIntoConstraints = false
-        
-        return image
+        setUpImageView()
         
     }()
-    
     
     //  MARK: - Initializers
     
@@ -138,10 +106,6 @@ class PhotosTableViewCell: UITableViewCell {
             
         self.addSubview(title)
         self.addSubview(arrow)
-        
-//        self.addSubview(photos)
-//
-        
         self.addSubview(stackView)
         stackView.addArrangedSubview(photo1)
         stackView.addArrangedSubview(photo2)
@@ -150,4 +114,19 @@ class PhotosTableViewCell: UITableViewCell {
        
     }
 
+}
+
+func setUpImageView() -> UIImageView {
+    
+    let image = UIImageView()
+    
+        image.backgroundColor = .red
+        image.layer.cornerRadius = 6
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        
+        image.translatesAutoresizingMaskIntoConstraints = false
+    
+    return image
+    
 }

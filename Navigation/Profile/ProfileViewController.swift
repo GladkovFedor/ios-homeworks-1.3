@@ -7,17 +7,17 @@
 
 import UIKit
 
+class ProfileViewController: UIViewController {
+    
     private let cellID = "cellID"
     private let cellID2 = "cellID2"
-
-class ProfileViewController: UIViewController {
     
     let dataStore = DataStore()
     
     let tableView: UITableView = {
         
         let tv = UITableView()
-        tv.translatesAutoresizingMaskIntoConstraints = false
+            tv.translatesAutoresizingMaskIntoConstraints = false
         
         return tv
         
@@ -34,6 +34,8 @@ class ProfileViewController: UIViewController {
             
         tableView.dataSource = self
         tableView.delegate = self
+        
+        tableView.backgroundColor = .systemGray6
         
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "cellID")
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "cellID2")
@@ -65,12 +67,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if section == 0 {
-            return 1
-        } else {
-            return dataStore.posts.count
-        }
+        section == 0 ? 1 : dataStore.posts.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -106,20 +103,19 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section == 0 ? 220 : 0
+    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        if section == 0 {
-            
-            let profileHeader = ProfileHeaderView()
-            return profileHeader
-            
-        } else {
-            
-            return nil
-            
-        }
+        let profileHeader = ProfileHeaderView()
+        
+        return section == 0 ? profileHeader : nil
         
     }
     
