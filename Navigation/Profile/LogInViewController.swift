@@ -24,6 +24,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     let logo: UIImageView = {
         
         let logo = UIImageView()
+        
             logo.image = UIImage(named: "logo")
         
             logo.translatesAutoresizingMaskIntoConstraints = false
@@ -91,6 +92,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         let border = UIView()
         
             border.backgroundColor = .lightGray
+        
             border.translatesAutoresizingMaskIntoConstraints = false
         
         return border
@@ -101,15 +103,13 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         let btn = UIButton()
         
             btn.setTitle("Log In", for: .normal)
-        
             btn.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
             btn.layer.cornerRadius = 10
             btn.setTitleColor(UIColor.white, for: .normal)
         
-            btn.clipsToBounds = true
-        
             btn.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         
+            btn.clipsToBounds = true
             btn.translatesAutoresizingMaskIntoConstraints = false
         
         return btn
@@ -119,15 +119,13 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         tabBarController?.tabBar.backgroundColor = .systemBackground
         view.backgroundColor = .systemBackground
         scrollView.backgroundColor = .white
         
         let safeLayout = self.view.safeAreaLayoutGuide
+        
         navigationController?.navigationBar.isHidden = true
-        
-        
         
         addAllSubviews()
         
@@ -233,6 +231,5 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         self.scrollView.contentInset = .zero
         
     }
-    
 
 }

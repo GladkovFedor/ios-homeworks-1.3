@@ -52,7 +52,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         return profileName
     }()
     
-//     MARK: -    Статус
+//     MARK: - Статус
     
     var statusLabel: UILabel = {
         
@@ -113,7 +113,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         let statusTextField = UITextField()
         
             statusTextField.backgroundColor = .white
-        
             statusTextField.placeholder = "Enter your status"
             statusTextField.textColor = .black
             statusTextField.font = UIFont.systemFont(ofSize: 15)
@@ -151,20 +150,20 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             
-            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 60),
+            statusLabel.leadingAnchor.constraint(equalTo: rectForTextField.leadingAnchor),
+            statusLabel.bottomAnchor.constraint(equalTo: rectForTextField.topAnchor, constant: -10),
             
-            rectForTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 16),
-            rectForTextField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor, constant: 0),
+            rectForTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -10),
+            rectForTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             rectForTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            rectForTextField.heightAnchor.constraint(equalToConstant: 50),
+            rectForTextField.heightAnchor.constraint(equalToConstant: 40),
             
             statusTextField.topAnchor.constraint(equalTo: rectForTextField.topAnchor, constant: 0),
             statusTextField.leadingAnchor.constraint(equalTo: rectForTextField.leadingAnchor, constant: 5),
             statusTextField.trailingAnchor.constraint(equalTo: rectForTextField.trailingAnchor, constant: -5),
-            statusTextField.heightAnchor.constraint(equalTo: rectForTextField.heightAnchor, constant: 0),
+            statusTextField.heightAnchor.constraint(equalTo: rectForTextField.heightAnchor),
             
-            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
+            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
             setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             setStatusButton.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor),
             setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
@@ -198,9 +197,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         statusLabel.text = statusText
         statusTextField.text = ""
 
-        if let text = statusLabel.text {
-            print(text)
-        }
     }
     
     @objc func statusTextChanged(_ textField: UITextField) {

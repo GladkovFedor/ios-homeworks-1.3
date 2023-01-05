@@ -24,8 +24,6 @@ class PostViewController: UIViewController {
         
     }
     
-    
-    
     @objc func infoButtonTapped(_ sender: UIBarButtonItem) {
         
         let infoVC = InfoViewController()

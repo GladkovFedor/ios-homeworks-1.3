@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         logInController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 2)
         return logInController
     }
-
+    
     func createTabBar() -> UITabBarController {
         let tabBar = UITabBarController()
         tabBar.viewControllers = [createFeedController(), createLogInController()]

@@ -8,22 +8,65 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-
+    
     let newPost = Post(author: "", description: "", image: "", likes: 0, views: 0)
+    
+    //      MARK: - Stack View
+    
+    let stackViewButtons: UIStackView = {
+        
+        let stack = UIStackView()
+        
+        stack.axis = .vertical
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        stack.spacing = 10
+        
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stack
+        
+    }()
+    
+    let button1: UIButton = {
+        
+        let btn = UIButton()
+        
+        btn.backgroundColor = .red
+        btn.setTitle("Button 1", for: .normal)
+        
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        
+        btn.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
+        
+        return btn
+        
+    }()
+    
+    let button2: UIButton = {
+        
+        let btn = UIButton()
+        
+        btn.backgroundColor = .blue
+        btn.setTitle("Button 2", for: .normal)
+        
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        
+        btn.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
+        
+        return btn
+        
+    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        
+        view.backgroundColor = .systemGray6
         
         self.view.addSubview(stackViewButtons)
-        stackViewButtons.translatesAutoresizingMaskIntoConstraints = false
-        
         stackViewButtons.addArrangedSubview(button1)
         stackViewButtons.addArrangedSubview(button2)
-        button1.translatesAutoresizingMaskIntoConstraints = false
-        button2.translatesAutoresizingMaskIntoConstraints = false
-        
-        
         
         NSLayoutConstraint.activate([
             
@@ -36,53 +79,11 @@ class FeedViewController: UIViewController {
         
     }
     
-//      MARK: - Stack View
-    
-    let stackViewButtons: UIStackView = {
-        
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.alignment = .fill
-        stack.distribution = .fillEqually
-        stack.spacing = 10
-        
-        return stack
-        
-    }()
-    
-        let button1: UIButton = {
-            
-            let btn = UIButton()
-            btn.backgroundColor = .red
-            btn.setTitle("Button 1", for: .normal)
-            
-            btn.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
-            
-            return btn
-            
-        }()
-        
-        let button2: UIButton = {
-            
-            let btn = UIButton()
-            btn.backgroundColor = .blue
-            btn.setTitle("Button 2", for: .normal)
-            
-            btn.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
-            
-            return btn
-            
-        }()
-    
-    
-    
     @objc func btnTapped(_ handler: UIButton) {
         
         let vc = PostViewController()
-//        vc.titleFromPost = newPost.title
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-    
     
 }
