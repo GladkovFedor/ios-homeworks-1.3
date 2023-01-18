@@ -12,6 +12,8 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     
     private var statusText: String!
     
+    private let tapGestureRecognizer = UITapGestureRecognizer()
+    
 //     MARK: - Фото профиля
     
     let avatarImageView: UIView = {
@@ -33,6 +35,43 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             image.translatesAutoresizingMaskIntoConstraints = false
         
         return image
+        
+    }()
+    
+//     MARK: - Полупрозрачная вью для анимации
+    
+    var alphaView: UIView = {
+        
+        let view = UIView()
+        
+            view.isHidden = true
+            view.backgroundColor = .black
+            view.alpha = 0
+        
+            view.isHidden = true
+        
+            view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+        
+    }()
+    
+//     MARK: - Кнопка закрытия открытой фотографии профиля
+    
+    var closeButton: UIButton = {
+       
+        let btn = UIButton()
+            
+            btn.setImage(UIImage(systemName: "xmark"), for: .normal)
+            btn.tintColor = .white
+            btn.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            btn.alpha = 0
+        
+            btn.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        
+            btn.translatesAutoresizingMaskIntoConstraints = false
+        
+        return btn
         
     }()
     
@@ -134,6 +173,11 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
 
         self.addAllSubviews()
         
+        tapGestureRecognizer.addTarget(self, action: #selector(profileImageTapped))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+ 
+        avatarImageView.addGestureRecognizer(tapGestureRecognizer)
+                
         NSLayoutConstraint.activate([
             
             avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
@@ -167,7 +211,15 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             setStatusButton.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor),
             setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50)
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            alphaView.topAnchor.constraint(equalTo: topAnchor),
+            alphaView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            alphaView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            alphaView.heightAnchor.constraint(equalToConstant: 1000),
+            
+            closeButton.trailingAnchor.constraint(equalTo: alphaView.trailingAnchor, constant: -20),
+            closeButton.topAnchor.constraint(equalTo: alphaView.topAnchor, constant: 20)
             
         ])
     }
@@ -180,15 +232,18 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     
     func addAllSubviews() {
         
-        self.addSubview(avatarImageView)
-        avatarImageView.addSubview(image)
-        avatarImageView.clipsToBounds = true
         self.addSubview(fullNameLabel)
         self.addSubview(statusLabel)
         self.addSubview(rectForTextField)
         rectForTextField.addSubview(statusTextField)
         rectForTextField.clipsToBounds = true
         self.addSubview(setStatusButton)
+        
+        self.addSubview(alphaView)
+        alphaView.addSubview(closeButton)
+        self.addSubview(avatarImageView)
+        avatarImageView.addSubview(image)
+        avatarImageView.clipsToBounds = true
         
     }
 
@@ -203,6 +258,57 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         
         statusTextField.clearButtonMode = .whileEditing
         statusText = textField.text
+        
+    }
+    
+    @objc func profileImageTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+        
+        print("avatar tapped")
+        
+        UIView.animate(withDuration: 0.5, delay: 0, animations: {
+            
+            let coef = UIScreen.main.bounds.width / 130
+            
+            self.avatarImageView.center.x = self.center.x
+            self.avatarImageView.center.y = self.center.y + 200
+            
+            self.avatarImageView.transform = CGAffineTransform(scaleX: coef, y: coef)
+            self.avatarImageView.layer.cornerRadius = 0
+            
+            self.alphaView.isHidden = false
+            self.alphaView.alpha = 0.5
+            
+        })
+        
+        UIView.animate(withDuration: 0.3, delay: 0.5, animations: {
+            
+            self.closeButton.alpha = 1
+            
+        })
+        
+    }
+    
+    @objc func closeButtonTapped(_ sender: UIButton) {
+        
+        print("close btn tapped")
+        
+        UIView.animate(withDuration: 0.3, delay: 0, animations: {
+            
+            self.closeButton.alpha = 0
+            
+        })
+        
+        UIView.animate(withDuration: 0.5, delay: 0.3, animations: { [self] in
+            
+            self.avatarImageView.center.x = 16 + 130 / 2
+            self.avatarImageView.center.y = 12 + 130 / 2
+            
+            self.avatarImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.avatarImageView.layer.cornerRadius = 130 / 2
+
+            self.alphaView.alpha = 0
+
+        })
         
     }
     
