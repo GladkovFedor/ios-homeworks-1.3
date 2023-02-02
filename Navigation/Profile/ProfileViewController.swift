@@ -41,7 +41,7 @@ class ProfileViewController: UIViewController {
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "cellID2")
             
         addAllSubviews()
-            
+        
         NSLayoutConstraint.activate([
                 
             tableView.topAnchor.constraint(equalTo: safeLayout.topAnchor),
