@@ -116,6 +116,32 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
     }()
     
+    let passwordRedView: UIView = {
+        
+        let view = UIView()
+        
+        view.backgroundColor = .red
+        view.isHidden = true
+        view.alpha = 0
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+        
+    }()
+    
+    let loginRedView: UIView = {
+        
+        let view = UIView()
+        
+        view.backgroundColor = .red
+        view.isHidden = true
+        view.alpha = 0
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+        
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -161,6 +187,16 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 middleBorder.leadingAnchor.constraint(equalTo: logInStack.leadingAnchor),
                 middleBorder.trailingAnchor.constraint(equalTo: logInStack.trailingAnchor),
             
+                passwordRedView.leadingAnchor.constraint(equalTo: logInStack.leadingAnchor),
+                passwordRedView.trailingAnchor.constraint(equalTo: logInStack.trailingAnchor),
+                passwordRedView.heightAnchor.constraint(equalToConstant: 50),
+                passwordRedView.bottomAnchor.constraint(equalTo: logInStack.bottomAnchor),
+                
+                loginRedView.leadingAnchor.constraint(equalTo: logInStack.leadingAnchor),
+                loginRedView.trailingAnchor.constraint(equalTo: logInStack.trailingAnchor),
+                loginRedView.heightAnchor.constraint(equalToConstant: 50),
+                loginRedView.topAnchor.constraint(equalTo: logInStack.topAnchor),
+            
             logInButton.topAnchor.constraint(equalTo: logInStack.bottomAnchor, constant: 16),
             logInButton.leadingAnchor.constraint(equalTo: logInStack.leadingAnchor),
             logInButton.trailingAnchor.constraint(equalTo: logInStack.trailingAnchor),
@@ -189,7 +225,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         logInStack.addArrangedSubview(loginTextField)
         logInStack.addArrangedSubview(middleBorder)
         logInStack.addArrangedSubview(passwordTextField)
+        logInStack.addSubview(passwordRedView)
+        logInStack.addSubview(loginRedView)
         scrollView.addSubview(logInButton)
+        logInStack.clipsToBounds = true
         
     }
 
@@ -206,6 +245,28 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func logInButtonTapped(_ sender: UIButton) {
+        
+        guard !(loginTextField.text?.isEmpty ?? true) else {
+
+            return UIView.animate(withDuration: 0.3, delay: 0, animations: {
+                self.loginRedView.isHidden = false
+                self.loginRedView.alpha = 0.5
+                self.loginRedView.alpha = 0
+            })
+        }
+        
+        guard !(passwordTextField.text?.isEmpty ?? false) else {
+            
+            return UIView.animate(withDuration: 0.3, delay: 0, animations: {
+                self.passwordRedView.isHidden = false
+                self.passwordRedView.alpha = 0.5
+                self.passwordRedView.alpha = 0
+            })
+        }
+     
+        
+        self.loginRedView.isHidden = true
+        self.passwordRedView.isHidden = true
         
         let vc = ProfileViewController()
         self.navigationController?.pushViewController(vc, animated: true)
