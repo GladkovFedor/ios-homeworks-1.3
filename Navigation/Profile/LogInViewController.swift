@@ -87,6 +87,32 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
     }()
     
+    let passwordRedView: UIView = {
+        
+        let view = UIView()
+        
+        view.backgroundColor = .red
+        view.isHidden = true
+        view.alpha = 0
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+        
+    }()
+    
+    let loginRedView: UIView = {
+        
+        let view = UIView()
+        
+        view.backgroundColor = .red
+        view.isHidden = true
+        view.alpha = 0
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+        
+    }()
+    
     let middleBorder: UIView = {
         
         let border = UIView()
@@ -116,29 +142,19 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
     }()
     
-    let passwordRedView: UIView = {
+    let invalidLengthLabel: UILabel = {
         
-        let view = UIView()
+        let label = UILabel()
         
-        view.backgroundColor = .red
-        view.isHidden = true
-        view.alpha = 0
+        label.text = "Недостаточное колчество символов пароля"
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .systemGray
+        label.textAlignment = .center
+        label.alpha = 0
         
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        label.translatesAutoresizingMaskIntoConstraints = false
         
-    }()
-    
-    let loginRedView: UIView = {
-        
-        let view = UIView()
-        
-        view.backgroundColor = .red
-        view.isHidden = true
-        view.alpha = 0
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        return label
         
     }()
     
@@ -177,6 +193,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             logInStack.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 120),
             logInStack.heightAnchor.constraint(equalToConstant: 100),
             logInStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -32),
+            
+            invalidLengthLabel.topAnchor.constraint(equalTo: logInStack.bottomAnchor),
+            invalidLengthLabel.leadingAnchor.constraint(equalTo: logInStack.leadingAnchor),
+            invalidLengthLabel.trailingAnchor.constraint(equalTo: logInStack.trailingAnchor),
+            invalidLengthLabel.bottomAnchor.constraint(equalTo: logInButton.topAnchor),
             
                 loginTextField.widthAnchor.constraint(equalTo: logInStack.widthAnchor, constant: -30),
                 
@@ -222,6 +243,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         scrollView.addSubview(logo)
         scrollView.addSubview(logInStack)
+        scrollView.addSubview(invalidLengthLabel)
         logInStack.addArrangedSubview(loginTextField)
         logInStack.addArrangedSubview(middleBorder)
         logInStack.addArrangedSubview(passwordTextField)
@@ -247,7 +269,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @objc func logInButtonTapped(_ sender: UIButton) {
         
         guard !(loginTextField.text?.isEmpty ?? true) else {
-
             return UIView.animate(withDuration: 0.3, delay: 0, animations: {
                 self.loginRedView.isHidden = false
                 self.loginRedView.alpha = 0.5
@@ -256,21 +277,47 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         }
         
         guard !(passwordTextField.text?.isEmpty ?? false) else {
-            
             return UIView.animate(withDuration: 0.3, delay: 0, animations: {
                 self.passwordRedView.isHidden = false
                 self.passwordRedView.alpha = 0.5
                 self.passwordRedView.alpha = 0
             })
         }
-     
         
-        self.loginRedView.isHidden = true
-        self.passwordRedView.isHidden = true
+        guard (passwordTextField.text?.count ?? 0) > 5 else {
+            return invalidLengthOfAPassword()
+        }
         
-        let vc = ProfileViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-
+        if (loginTextField.text != "Федя") || (passwordTextField.text != "ФедяФедя"){
+            invalidValueOf(cell: "логина или пароля")
+        } else {
+            let vc = ProfileViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func invalidLengthOfAPassword() {
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            self.passwordRedView.isHidden = false
+            self.passwordRedView.alpha = 0.5
+            self.passwordRedView.alpha = 0
+        })
+        
+        UIView.animate(withDuration: 2.5, delay: 0, options: .curveEaseInOut, animations: {
+            self.invalidLengthLabel.alpha = 1
+            self.invalidLengthLabel.alpha = 0
+        })
+    }
+    
+    func invalidValueOf(cell: String) {
+        
+        let alertController = UIAlertController(title: "Неверное значение \(cell)", message: "Попробуйте снова", preferredStyle: .alert)
+        let firstAlertAction = UIAlertAction(title: "ОК", style: .default)
+        
+        alertController.addAction(firstAlertAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func subscribeKeyboardEvents() {
