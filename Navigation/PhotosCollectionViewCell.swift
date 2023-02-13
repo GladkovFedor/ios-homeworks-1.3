@@ -15,18 +15,18 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     let photo: UIImageView = {
         
         let photo = UIImageView()
-        
             photo.image = UIImage()
             photo.translatesAutoresizingMaskIntoConstraints = false
             photo.contentMode = .scaleAspectFill
             photo.clipsToBounds = true
         
         return photo
-        
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        contentView.backgroundColor = .systemGray
         
         contentView.addSubview(photo)
         
@@ -43,5 +43,4 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

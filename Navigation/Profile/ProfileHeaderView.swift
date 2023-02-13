@@ -12,8 +12,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     
     private var statusText: String!
     
-//    private let tapGestureRecognizer = UITapGestureRecognizer()
-    
 //     MARK: - Фото профиля
     
     let avatarImageView: UIView = {
@@ -35,7 +33,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             image.translatesAutoresizingMaskIntoConstraints = false
         
         return image
-        
     }()
     
 //     MARK: - Полупрозрачная вью для анимации
@@ -43,7 +40,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     var alphaView: UIView = {
         
         let view = UIView()
-        
             view.isHidden = true
             view.backgroundColor = .black
             view.alpha = 0
@@ -52,7 +48,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
-        
     }()
     
 //     MARK: - Кнопка закрытия открытой фотографии профиля
@@ -60,7 +55,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     var closeButton: UIButton = {
        
         let btn = UIButton()
-            
             btn.setImage(UIImage(systemName: "xmark"), for: .normal)
             btn.tintColor = .white
             btn.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
@@ -71,7 +65,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             btn.translatesAutoresizingMaskIntoConstraints = false
         
         return btn
-        
     }()
     
 //     MARK: - Имя профиля
@@ -79,7 +72,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     var fullNameLabel: UILabel = {
         
         let profileName = UILabel()
-        
             profileName.text = "Hipster Cat"
             profileName.font = UIFont.boldSystemFont(ofSize: 18)
             profileName.textColor = .black
@@ -95,7 +87,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     var statusLabel: UILabel = {
         
         var status = UILabel()
-        
             status.textColor = .gray
             status.font = UIFont.systemFont(ofSize: 14)
             status.textAlignment = .left
@@ -106,14 +97,11 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         return status
     }()
     
-   
-    
 //     MARK: - Кнопока "Показать статус"
     
     var setStatusButton: UIButton = {
         
         let btn = UIButton()
-        
             btn.backgroundColor = .systemBlue
             btn.setTitle("Set status", for: .normal)
             btn.layer.cornerRadius = 4
@@ -135,7 +123,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     var rectForTextField: UIView = {
         
         let rect = UIView()
-        
             rect.backgroundColor = .white
             rect.layer.cornerRadius = 12
             rect.layer.borderWidth = 1
@@ -151,7 +138,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     let statusRedView: UIView = {
         
         let view = UIView()
-        
             view.backgroundColor = .red
             view.isHidden = true
             view.alpha = 0
@@ -159,7 +145,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
-        
     }()
     
 //     MARK: - TF для ввода статуса
@@ -167,7 +152,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     var statusTextField: UITextField = {
 
         let statusTextField = UITextField()
-        
             statusTextField.backgroundColor = .white
             statusTextField.placeholder = "Enter your status"
             statusTextField.textColor = .black
@@ -229,7 +213,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             setStatusButton.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor),
             setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
             
             alphaView.topAnchor.constraint(equalTo: topAnchor),
             alphaView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -238,7 +221,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             
             closeButton.trailingAnchor.constraint(equalTo: alphaView.trailingAnchor, constant: -20),
             closeButton.topAnchor.constraint(equalTo: alphaView.topAnchor, constant: 20)
-            
         ])
     }
     
@@ -268,9 +250,8 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     private func setupGestureRecognizers() {
         
         let imageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped))
-        imageTapRecognizer.numberOfTapsRequired = 1
+            imageTapRecognizer.numberOfTapsRequired = 1
             avatarImageView.addGestureRecognizer(imageTapRecognizer)
-        
     }
 
     @objc private func setStatusButtonTapped(_ sender: UIButton) {
@@ -285,17 +266,14 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         
         statusLabel.text = statusText
         statusTextField.text = ""
-
     }
     
     @objc private func statusTextChanged(_ textField: UITextField) {
-        
         statusTextField.clearButtonMode = .whileEditing
         statusText = textField.text
-        
     }
     
-    @objc private func profileImageTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+    @objc fileprivate func profileImageTapped(_ gestureRecognizer: UITapGestureRecognizer) {
         
         print("avatar tapped")
         

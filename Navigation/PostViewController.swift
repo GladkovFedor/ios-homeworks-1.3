@@ -21,14 +21,10 @@ class PostViewController: UIViewController {
         let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(infoButtonTapped))
         
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
-        
     }
     
     @objc func infoButtonTapped(_ sender: UIBarButtonItem) {
-        
         let infoVC = InfoViewController()
         present(infoVC, animated: true)
-            
     }
-      
 }

@@ -85,5 +85,4 @@ class FeedViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-    
 }

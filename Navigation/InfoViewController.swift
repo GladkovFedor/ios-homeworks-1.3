@@ -26,18 +26,15 @@ class InfoViewController: UIViewController {
         func alertButtonTapped() {
             
             let alertController = UIAlertController(title: "Title of alert message!", message: "Alert message itself!", preferredStyle: .alert)
-            
             let firstAlertAction = UIAlertAction(title: "Do Nothing", style: .default)
-            
             let secondAlertAction = UIAlertAction(title: "Print in console", style: .default) { (secondAlertAction) in
                 print("The message that is displayed in the console, as a result of pressing the button")
             }
             
-            alertController.addAction(firstAlertAction)
-            alertController.addAction(secondAlertAction)
+                alertController.addAction(firstAlertAction)
+                alertController.addAction(secondAlertAction)
             
             self.present(alertController, animated: true, completion: nil)
-            
         }
         
         alertButton.addAction(UIAction(handler: { _ in
@@ -51,7 +48,5 @@ class InfoViewController: UIViewController {
             alertButton.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             
         ])
-
     }
-
 }

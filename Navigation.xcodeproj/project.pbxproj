@@ -16,6 +16,7 @@
 		A15FB0B729096308005AE6C9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15FB0B629096308005AE6C9 /* ProfileViewController.swift */; };
 		A15FB0B929097187005AE6C9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15FB0B829097187005AE6C9 /* PostViewController.swift */; };
 		A15FB0BB29097D7E005AE6C9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15FB0BA29097D7E005AE6C9 /* InfoViewController.swift */; };
+		A180889629976357009C1B9F /* PostTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180889529976357009C1B9F /* PostTextViewController.swift */; };
 		A1B26FF0291E285E00BA2E7F /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B26FEF291E285E00BA2E7F /* ProfileHeaderView.swift */; };
 		A1B47D8D293DF82100C5FD61 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B47D8C293DF82100C5FD61 /* PhotosTableViewCell.swift */; };
 		A1D42AD02934A7AD00458952 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D42ACF2934A7AD00458952 /* LogInViewController.swift */; };
@@ -37,6 +38,7 @@
 		A15FB0B629096308005AE6C9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A15FB0B829097187005AE6C9 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		A15FB0BA29097D7E005AE6C9 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		A180889529976357009C1B9F /* PostTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTextViewController.swift; sourceTree = "<group>"; };
 		A1B26FEF291E285E00BA2E7F /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		A1B47D8C293DF82100C5FD61 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		A1D42ACF2934A7AD00458952 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				A1D42ACF2934A7AD00458952 /* LogInViewController.swift */,
 				A1E1284B2943341200B3DC92 /* PhotosViewController.swift */,
 				A1E1284F294347BF00B3DC92 /* PhotosCollectionView.swift */,
+				A180889529976357009C1B9F /* PostTextViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				A15FB0B929097187005AE6C9 /* PostViewController.swift in Sources */,
 				A15FB0B729096308005AE6C9 /* ProfileViewController.swift in Sources */,
 				A13A6D28290FE01900DC5176 /* Post.swift in Sources */,
+				A180889629976357009C1B9F /* PostTextViewController.swift in Sources */,
 				A1B26FF0291E285E00BA2E7F /* ProfileHeaderView.swift in Sources */,
 				A15FB0BB29097D7E005AE6C9 /* InfoViewController.swift in Sources */,
 				A15FB09F29090D8B005AE6C9 /* AppDelegate.swift in Sources */,
@@ -325,8 +329,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -340,6 +346,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Gladkov-Fedor.Navigation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -351,8 +358,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -366,6 +375,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Gladkov-Fedor.Navigation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

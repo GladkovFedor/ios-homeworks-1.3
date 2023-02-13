@@ -57,11 +57,8 @@ class ProfileViewController: UIViewController {
     }
     
     func addAllSubviews() {
-        
         view.addSubview(tableView)
-        
     }
-
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
@@ -73,7 +70,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
@@ -94,13 +90,20 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             
                 cell.postTitle.text = dataStore.posts[indexPath.item].author
                 cell.postText.text = dataStore.posts[indexPath.item].description
-                cell.likes.text = "Likes: \(String(dataStore.posts[indexPath.item].likes))"
+                cell.numOfLikes = dataStore.posts[indexPath.item].likes
+                cell.likes.text = "Likes: \(cell.numOfLikes)"
+            
+                if cell.numOfLikes > dataStore.posts[indexPath.item].likes {
+                    tableView.reloadData()
+                }
+            
+//              cell.likes.text = "Likes: \(String(dataStore.posts[indexPath.item].likes))"
+            
                 cell.views.text = "Views: \(String(dataStore.posts[indexPath.item].views))"
                 cell.postImage.image = UIImage(named: dataStore.posts[indexPath.item].image)
             
             return cell
         }
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -128,8 +131,23 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = PhotosViewController()
             self.navigationController?.pushViewController(vc, animated: true)
             
+        } else {
+            
+            let postTextVC = PostTextViewController()
+                postTextVC.headline.text = "\(String(dataStore.posts[indexPath.item].author))"
+                postTextVC.postText.text = "\(String(dataStore.posts[indexPath.item].description))"
+                present(postTextVC, animated: true)
+            
+            dataStore.posts[indexPath.item].views += 1
+            tableView.reloadData()
         }
-        
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in
+            self.dataStore.posts.remove(at: indexPath.item)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        return UISwipeActionsConfiguration(actions: [action])
+    }
 }
