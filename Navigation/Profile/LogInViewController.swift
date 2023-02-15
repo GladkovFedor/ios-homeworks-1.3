@@ -252,7 +252,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             return emptyPasswordTextField()
         }
 
-        if passwordTextField.text != "аааааа" {
+        if (loginTextField.text != "user.email@gmail.com") || (passwordTextField.text != "password") {
             invalidPassword()
         } else {
             let vc = ProfileViewController()
