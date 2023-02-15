@@ -10,9 +10,11 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
-    //  MARK: - StackView для ячейки
+    //  MARK: - Индекс выбранной ячейки (для метода с изменением количества лайков)
     
-    let dataStore = DataStore()
+    var indexOfSelectedCell: Int = 0
+    
+    //  MARK: - StackView для ячейки
     
     let stackView: UIStackView = {
         
@@ -30,7 +32,6 @@ class PostTableViewCell: UITableViewCell {
     let postTitle: UILabel = {
         
         let label = UILabel()
-            label.text = "test test test test test test test"
             label.textColor = .black
             label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
             label.numberOfLines = 2
@@ -82,8 +83,6 @@ class PostTableViewCell: UITableViewCell {
     }()
         
     //  MARK: - Likes
-    
-    var numOfLikes = 0
     
     var likes: UILabel = {
         
@@ -182,15 +181,23 @@ class PostTableViewCell: UITableViewCell {
         let likesTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(likesTapped))
             likesTapRecognizer.numberOfTapsRequired = 1
             likes.addGestureRecognizer(likesTapRecognizer)
-        
     }
     
     @objc private func likesTapped(_ sender: UITapGestureRecognizer) {
         
-        numOfLikes += 1
+        DataStore.shared.posts[indexOfSelectedCell].likes += 1
+        likes.text = "Likes: \(DataStore.shared.posts[indexOfSelectedCell].likes)"
+        layoutIfNeeded()
+    }
+    
+    func setUpCell(index: Int) {
         
-        likes.text = "Likes: \(numOfLikes)"
-         
-        print("likes tapped")
+        indexOfSelectedCell = index
+        
+        postTitle.text = DataStore.shared.posts[index].author
+        postText.text = DataStore.shared.posts[index].description
+        postImage.image = UIImage(named: DataStore.shared.posts[index].image)
+        likes.text = "Likes: \(DataStore.shared.posts[index].likes)"
+        views.text = "Views: \(DataStore.shared.posts[index].views)"
     }
 }

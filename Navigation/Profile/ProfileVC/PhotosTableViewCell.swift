@@ -12,7 +12,6 @@ class PhotosTableViewCell: UITableViewCell {
     let title: UILabel = {
         
         let label = UILabel()
-        
             label.text = "Photos"
             label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
             label.textColor = .black
@@ -20,7 +19,6 @@ class PhotosTableViewCell: UITableViewCell {
             label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
-        
     }()
     
     let arrow: UIImageView = {
@@ -31,13 +29,11 @@ class PhotosTableViewCell: UITableViewCell {
             image.translatesAutoresizingMaskIntoConstraints = false
         
         return image
-        
     }()
     
     let stackView: UIStackView = {
         
         let sv = UIStackView()
-        
             sv.axis = .horizontal
             sv.distribution = .fillEqually
             sv.spacing = 8
@@ -45,31 +41,22 @@ class PhotosTableViewCell: UITableViewCell {
             sv.translatesAutoresizingMaskIntoConstraints = false
         
         return sv
-        
     }()
     
     let photo1: UIImageView = {
-        
         setUpImageView()
-        
     }()
     
     let photo2: UIImageView = {
-        
         setUpImageView()
-        
     }()
     
     let photo3: UIImageView = {
-        
         setUpImageView()
-        
     }()
     
     let photo4: UIImageView = {
-        
         setUpImageView()
-        
     }()
     
     //  MARK: - Initializers
@@ -92,7 +79,6 @@ class PhotosTableViewCell: UITableViewCell {
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
             stackView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 48)/3 - 24),
-
         ])
     }
         
@@ -111,9 +97,7 @@ class PhotosTableViewCell: UITableViewCell {
         stackView.addArrangedSubview(photo2)
         stackView.addArrangedSubview(photo3)
         stackView.addArrangedSubview(photo4)
-       
     }
-
 }
 
 func setUpImageView() -> UIImageView {

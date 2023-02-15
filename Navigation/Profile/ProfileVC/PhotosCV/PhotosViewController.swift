@@ -9,7 +9,7 @@ import UIKit
 
 class PhotosViewController: UIViewController {
     
-    let dataStore = DataStore()
+//    let dataStore = DataStore()
     
     var alphaView: UIView = {
         
@@ -113,14 +113,14 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        dataStore.photoGallery.count
+        DataStore.shared.photoGallery.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.reusableID, for: indexPath) as! PhotosCollectionViewCell
             cell.backgroundColor = .clear
-            cell.photo.image = UIImage(named: dataStore.photoGallery[indexPath.item].name)
+            cell.photo.image = UIImage(named: DataStore.shared.photoGallery[indexPath.item].name)
         
         return cell
     }
@@ -143,9 +143,9 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        print("Selected \(dataStore.photoGallery[indexPath.item].name)")
+        print("Selected \(DataStore.shared.photoGallery[indexPath.item].name)")
         
-        let tappedImage = UIImage(named: self.dataStore.photoGallery[indexPath.item].name)
+        let tappedImage = UIImage(named: DataStore.shared.photoGallery[indexPath.item].name)
         let screenSize = UIScreen.main.bounds
         let scaleFactor = screenSize.width / tappedImage!.size.width
         

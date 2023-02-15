@@ -14,7 +14,6 @@ struct Post {
     let image: String
     var likes: Int
     var views: Int
-    
 }
 
 struct Photo {
@@ -29,7 +28,9 @@ class DataStore {
     
     var photoGallery = [Photo]()
     
-    init() {
+    static let shared = DataStore()
+    
+    private init() {
         
         posts = [
             
@@ -53,7 +54,6 @@ class DataStore {
                  image: "Mask",
                  likes: 39,
                  views: 192)
-            
         ]
         
         photoGallery = [
@@ -81,13 +81,6 @@ class DataStore {
             Photo(name: "IMG_3625 (ретушь)"),
             Photo(name: "IMG_6791"),
             Photo(name: "IMG_9251"),
-        
         ]
-    }
-    
-    func changeNumOfLikesAt(index: Int) {
-        
-        posts[index].likes += 1
-        
     }
 }

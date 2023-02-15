@@ -125,13 +125,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             btn.translatesAutoresizingMaskIntoConstraints = false
         
         return btn
-        
     }()
-    
-//    enum LabelTextContent: String {
-//        case email = "Неверный формат e-mail"
-//        case password = "Недостаточное колчество символов пароля"
-//    }
     
     let alertLabel: UILabel = {
         
@@ -240,13 +234,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         logInStack.addSubview(loginRedView)
         scrollView.addSubview(logInButton)
         logInStack.clipsToBounds = true
-        
     }
 
     @objc func loginTextFieldChanged(_ textField: UITextField) {
-        
         loginTextField.clearButtonMode = .whileEditing
-        
     }
     
     @objc func logInButtonTapped(_ sender: UIButton) {

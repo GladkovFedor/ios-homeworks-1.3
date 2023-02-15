@@ -9,6 +9,8 @@ import UIKit
 
 class PostTextViewController: UIViewController {
     
+    // MARK: - Заголовок
+    
     let headline: UILabel = {
         
         let label = UILabel()
@@ -23,6 +25,8 @@ class PostTextViewController: UIViewController {
         return label
         
     }()
+    
+    // MARK: - Полный текст поста
     
     let postText: UITextView = {
         
@@ -62,11 +66,9 @@ class PostTextViewController: UIViewController {
     }
     
     func addAllSubviews() {
-        
         view.addSubview(headline)
         headline.sizeToFit()
         view.addSubview(postText)
         postText.sizeToFit()
-        
     }
 }

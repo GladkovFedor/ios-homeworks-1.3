@@ -15,47 +15,39 @@ class FeedViewController: UIViewController {
     
     let stackViewButtons: UIStackView = {
         
-        let stack = UIStackView()
+        let sv = UIStackView()
+            sv.axis = .vertical
+            sv.alignment = .fill
+            sv.distribution = .fillEqually
+            sv.spacing = 10
+                
+            sv.translatesAutoresizingMaskIntoConstraints = false
         
-        stack.axis = .vertical
-        stack.alignment = .fill
-        stack.distribution = .fillEqually
-        stack.spacing = 10
-        
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        
-        return stack
-        
+        return sv
     }()
     
     let button1: UIButton = {
         
         let btn = UIButton()
+            btn.backgroundColor = .red
+            btn.setTitle("Button 1", for: .normal)
+            btn.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
         
-        btn.backgroundColor = .red
-        btn.setTitle("Button 1", for: .normal)
-        
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        
-        btn.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
+            btn.translatesAutoresizingMaskIntoConstraints = false
         
         return btn
-        
     }()
     
     let button2: UIButton = {
         
         let btn = UIButton()
-        
-        btn.backgroundColor = .blue
-        btn.setTitle("Button 2", for: .normal)
-        
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        
-        btn.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
+            btn.backgroundColor = .blue
+            btn.setTitle("Button 2", for: .normal)
+            btn.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
+            
+            btn.translatesAutoresizingMaskIntoConstraints = false
         
         return btn
-        
     }()
 
     
@@ -80,9 +72,7 @@ class FeedViewController: UIViewController {
     }
     
     @objc func btnTapped(_ handler: UIButton) {
-        
         let vc = PostViewController()
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
 }

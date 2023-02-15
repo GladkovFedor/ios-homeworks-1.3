@@ -12,7 +12,7 @@ class ProfileViewController: UIViewController {
     private let cellID = "cellID"
     private let cellID2 = "cellID2"
     
-    let dataStore = DataStore()
+//    let dataStore = DataStore()
     
     let tableView: UITableView = {
         
@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        section == 0 ? 1 : dataStore.posts.count
+        section == 0 ? 1 : DataStore.shared.posts.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -77,30 +77,17 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 
             let photoCell = tableView.dequeueReusableCell(withIdentifier: "cellID2") as! PhotosTableViewCell
             
-                photoCell.photo1.image = UIImage(named: dataStore.photoGallery[0].name)
-                photoCell.photo2.image = UIImage(named: dataStore.photoGallery[1].name)
-                photoCell.photo3.image = UIImage(named: dataStore.photoGallery[2].name)
-                photoCell.photo4.image = UIImage(named: dataStore.photoGallery[3].name)
+                photoCell.photo1.image = UIImage(named: DataStore.shared.photoGallery[0].name)
+                photoCell.photo2.image = UIImage(named: DataStore.shared.photoGallery[1].name)
+                photoCell.photo3.image = UIImage(named: DataStore.shared.photoGallery[2].name)
+                photoCell.photo4.image = UIImage(named: DataStore.shared.photoGallery[3].name)
 
             return photoCell
 
         } else {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellID") as! PostTableViewCell
-            
-                cell.postTitle.text = dataStore.posts[indexPath.item].author
-                cell.postText.text = dataStore.posts[indexPath.item].description
-                cell.numOfLikes = dataStore.posts[indexPath.item].likes
-                cell.likes.text = "Likes: \(cell.numOfLikes)"
-            
-                if cell.numOfLikes > dataStore.posts[indexPath.item].likes {
-                    tableView.reloadData()
-                }
-            
-//              cell.likes.text = "Likes: \(String(dataStore.posts[indexPath.item].likes))"
-            
-                cell.views.text = "Views: \(String(dataStore.posts[indexPath.item].views))"
-                cell.postImage.image = UIImage(named: dataStore.posts[indexPath.item].image)
+                cell.setUpCell(index: indexPath.item)
             
             return cell
         }
@@ -117,7 +104,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let profileHeader = ProfileHeaderView()
-        
         return section == 0 ? profileHeader : nil
         
     }
@@ -134,18 +120,18 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             
             let postTextVC = PostTextViewController()
-                postTextVC.headline.text = "\(String(dataStore.posts[indexPath.item].author))"
-                postTextVC.postText.text = "\(String(dataStore.posts[indexPath.item].description))"
+                postTextVC.headline.text = "\(String(DataStore.shared.posts[indexPath.item].author))"
+                postTextVC.postText.text = "\(String(DataStore.shared.posts[indexPath.item].description))"
                 present(postTextVC, animated: true)
             
-            dataStore.posts[indexPath.item].views += 1
+            DataStore.shared.posts[indexPath.item].views += 1
             tableView.reloadData()
         }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in
-            self.dataStore.posts.remove(at: indexPath.item)
+            DataStore.shared.posts.remove(at: indexPath.item)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         return UISwipeActionsConfiguration(actions: [action])
